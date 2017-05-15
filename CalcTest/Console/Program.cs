@@ -15,27 +15,56 @@ namespace Console
         {
             var test = new Calc();
 
-            int x;
-            int.TryParse(args[0], out x);
-
-
-            int y;
-            int.TryParse(args[1], out y);
-
-            var operation = args[2];
             double result = 0;
 
-            if (operation == "sum")
+            if (args.Length == 3)
             {
-                result = test.Sum(x, y);
-            }
+                int x;
+                int.TryParse(args[0], out x);
 
-            else if (operation == "divide")
+                int y;
+                int.TryParse(args[1], out y);
+
+                var operation = args[2];
+
+                if (operation == "sum")
+                {
+                    result = test.Sum(x, y);
+                }
+                else if (operation == "divide")
+                {
+                    result = test.Divide(x, y);
+                }
+                else if(operation == "pow")
+                {
+                    result = test.Pow(x, y);
+                }
+                else if(operation == "multiply")
+                {
+                    result = test.Multiply(x, y);
+                }
+
+                Output.WriteLine($"{x} {operation} {y} = {result}");
+            }
+            if(args.Length == 2)
             {
-                result = test.Divide(x, y);
-            }
+                int x;
+                int.TryParse(args[0], out x);
 
-            Output.WriteLine($"{x} {operation} {y} = {result}");
+                var operation = args[1];
+
+                if (operation == "sqrt")
+                {
+                    result = test.Sqrt(x);
+                }
+                else if (operation == "abs")
+                {
+                    result = test.Abs(x);
+                }
+
+                Output.WriteLine($"{operation} ({x}) = {result}");
+            }
+            
             System.Console.ReadKey();
         }
     }

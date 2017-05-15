@@ -41,6 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calc.cs" />
+    <Compile Include="DefaultOperations\LnOperation.cs" />
+    <Compile Include="DefaultOperations\DivideOperation.cs" />
+    <Compile Include="DefaultOperations\MultiplyOperation.cs" />
+    <Compile Include="DefaultOperations\PowOperation.cs" />
+    <Compile Include="DefaultOperations\SqrtOperation.cs" />
+    <Compile Include="DefaultOperations\SumOperation.cs" />
     <Compile Include="IOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

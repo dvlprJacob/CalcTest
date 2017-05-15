@@ -3,3 +3,7 @@ C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\CalcLibrary\bin\Debug\CalcLi
 C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\CalcLibrary\obj\Debug\CalcLibrary.dll
 C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\CalcLibrary\obj\Debug\CalcLibrary.pdb
 C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\CalcLibrary\obj\Debug\CalcLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcLibrary\bin\Debug\CalcLibrary.dll
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcLibrary\bin\Debug\CalcLibrary.pdb
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcLibrary\obj\Debug\CalcLibrary.dll
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcLibrary\obj\Debug\CalcLibrary.pdb
