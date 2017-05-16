@@ -62,6 +62,71 @@ namespace CalcLibrary
         /// <summary>
         /// Выполнить операцию
         /// </summary>
+        /// <param name="IOperation">Название операции, реализующий IOperation</param>
+        /// <param name="args">Аргументы операции</param>
+        /// <returns></returns>
+        public object Execute(IOperation operation, object[] args)
+        {
+            //находим опер в списке доступных иначе возвращ ошибку,если нашли - разбираем аргументы,
+            //вызываем саму опер и возвр результат
+
+            var oper = Operations.FirstOrDefault(it => it.Name == operation.Name); // лямбда-выражение
+
+            //Если не нашли
+            if (oper == null)
+            {
+                return "Error";
+            }
+            // если нашли, вызываем саму операцию
+            double result = 0;
+            //разбираем аргументы
+            int x;
+            int.TryParse(args[0].ToString(), out x);
+
+            int y;
+            int.TryParse(args[1].ToString(), out y);
+
+            result = oper.Calc(x, y);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Выполнить операцию
+        /// </summary>
+        /// <param name="IOperationArgs">Название операции, реализующий IOperationArgs</param>
+        /// <param name="args">Аргументы операции</param>
+        /// <returns></returns>
+        public object Execute(IOperationArgs operation, object[] args)
+        {
+            //находим опер в списке доступных иначе возвращ ошибку,если нашли - разбираем аргументы,
+            //вызываем саму опер и возвр результат
+
+            var oper = Operations.FirstOrDefault(it => it.Name == operation.Name); // лямбда-выражение
+
+            //Если не нашли
+            if (oper == null)
+            {
+                return "Error";
+            }
+            // если нашли, вызываем саму операцию
+            double result = 0;
+
+            var operArgs = oper as IOperationArgs;
+            if (operArgs != null)
+            {
+
+                result = operArgs.Calc(
+                    args.Select(it => int.Parse(it.ToString()))
+                    );
+
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Выполнить операцию
+        /// </summary>
         /// <param name="operation">Название операции</param>
         /// <param name="args">Аргументы операции</param>
         /// <returns></returns>

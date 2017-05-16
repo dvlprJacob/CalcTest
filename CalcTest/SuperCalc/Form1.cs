@@ -40,37 +40,54 @@ namespace SuperCalc
 
             if (moreArgs)
             {
+                lInterface.Text = "IOperationArgs";
                 args.AddRange(tbMore.Text.Split(new char[] { ' ' }));
+                try
+                {
+                    result = Calc.Execute(cbOper.SelectedItem as CalcLibrary.IOperationArgs, args.ToArray());
+                }
+                catch (DivideByZeroException ex)
+                {
+                    lResult.Text = $"Error : {ex.Message}";
+                }
+                catch (Exception ex)
+                {
+                    lResult.Text = $"Error : {ex.Message}";
+                }
+                if (result != null)
+                {
+                    if (moreArgs)
+                        lResult.Text = $"{oper}( args ( {tbMore.Text} ) ) = {result}";
+                    else
+                        lResult.Text = $"{x} {oper} {y} = {result}";
+                }
             }
             else
             {
+                lInterface.Text = "IOperation";
                 x = tbX.Text;
                 y = tbY.Text;
                 args.Add(x);
                 args.Add(y);
-            }
-
-            try
-            {
-                result = Calc.Execute(oper, args.ToArray());
-            }
-            catch (DivideByZeroException ex)
-            {
-                lResult.Text = $"Error : {ex.Message}";
-            }
-            catch (Exception ex)
-            {
-                lResult.Text = $"Error : {ex.Message}";
-            }
-            if (result != null)
-            {
-                if (moreArgs)
-                    lResult.Text = $"{oper}( args ( {tbMore.Text} ) ) = {result}";
-                else
-                    lResult.Text = $"{x} {oper} {y} = {result}";
-                tbMore.ResetText();
-                tbX.ResetText();
-                tbY.ResetText();
+                try
+                {
+                    result = result = Calc.Execute(cbOper.SelectedItem as CalcLibrary.IOperation, args.ToArray());
+                }
+                catch (DivideByZeroException ex)
+                {
+                    lResult.Text = $"Error : {ex.Message}";
+                }
+                catch (Exception ex)
+                {
+                    lResult.Text = $"Error : {ex.Message}";
+                }
+                if (result != null)
+                {
+                    if (moreArgs)
+                        lResult.Text = $"{oper}( args ( {tbMore.Text} ) ) = {result}";
+                    else
+                        lResult.Text = $"{x} {oper} {y} = {result}";
+                }
             }
         }
 

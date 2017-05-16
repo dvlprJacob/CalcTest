@@ -37,6 +37,7 @@
             this.panTwoArgs = new System.Windows.Forms.Panel();
             this.panMoreArgs = new System.Windows.Forms.Panel();
             this.tbMore = new System.Windows.Forms.RichTextBox();
+            this.lInterface = new System.Windows.Forms.Label();
             this.panTwoArgs.SuspendLayout();
             this.panMoreArgs.SuspendLayout();
             this.SuspendLayout();
@@ -119,11 +120,20 @@
             this.tbMore.TabIndex = 0;
             this.tbMore.Text = "";
             // 
+            // lInterface
+            // 
+            this.lInterface.AutoSize = true;
+            this.lInterface.Location = new System.Drawing.Point(25, 267);
+            this.lInterface.Name = "lInterface";
+            this.lInterface.Size = new System.Drawing.Size(0, 13);
+            this.lInterface.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(507, 298);
+            this.Controls.Add(this.lInterface);
             this.Controls.Add(this.panMoreArgs);
             this.Controls.Add(this.panTwoArgs);
             this.Controls.Add(this.label1);
@@ -151,6 +161,7 @@
         private System.Windows.Forms.Panel panTwoArgs;
         private System.Windows.Forms.Panel panMoreArgs;
         private System.Windows.Forms.RichTextBox tbMore;
+        private System.Windows.Forms.Label lInterface;
     }
 }
 
