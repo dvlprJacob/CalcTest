@@ -6,35 +6,24 @@ using System.Threading.Tasks;
 
 namespace CalcLibrary.DefaultOperations
 {
-    class MultiplyOperation : CalcLibrary.IOperation
+    class MultiplyOperation : CalcLibrary.IOperationArgs
     {
         public string Name
         {
             get { return "multiply"; }
         }
-
-        public double Calc(int x)
-        {
-            return 0;
-        }
-
-        public double Calc(double x)
-        {
-            return 0;
-        }
-
-        public int Calc(int x, int y)
+        public double Calc(int x, int y)
         {
             return x * y;
         }
-        public double Calc(double x, double y)
+        public double Calc(IEnumerable<int> args)
         {
-            return x * y;
-        }
-
-        double IOperation.Calc(int x, int y)
-        {
-            return x * y;
+            double result = 1;
+            foreach(var it in args)
+            {
+                result *= it;
+            }
+            return result;
         }
     }
 }

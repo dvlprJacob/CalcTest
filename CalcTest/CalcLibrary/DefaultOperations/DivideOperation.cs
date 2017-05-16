@@ -6,39 +6,28 @@ using System.Threading.Tasks;
 
 namespace CalcLibrary.DefaultOperations
 {
-    class DivideOperation : CalcLibrary.IOperation
+    class DivideOperation : CalcLibrary.IOperationArgs
     {
         public string Name { get { return "divide"; } }
 
-        public double Calc(int x)
-        {
-            return 0;
-        }
-
-        public double Calc(double x)
-        {
-            return 0;
-        }
-
-        public double Calc(double x, double y )
+        public double Calc(int x, int y)
         {
             if (y != 0)
-                return x / y;
-            else throw new DivideByZeroException();
+            {
+                return x * 1d / y;
+            }
+            else
+                return double.NaN;
         }
-        
-        public int Calc(int x,int y)
+        public double Calc(IEnumerable<int> args)
         {
-            if (y != 0)
-                return x / y;
-            else throw new DivideByZeroException();
-        }
-
-        double IOperation.Calc(int x, int y)
-        {
-            if (y != 0)
-                return (double)(x / y);
-            else throw new DivideByZeroException();
+            var tmp = args.ToArray();
+            double result = tmp[0];
+            for(int i=1;i<tmp.Count();i++)
+            {
+                result /= tmp[i];
+            }
+            return result;
         }
     }
 }

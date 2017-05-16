@@ -14,7 +14,6 @@ namespace Console
         static void Main(string[] args)
         {
             var test = new Calc();
-
             double result = 0;
 
             if (args.Length == 3)
@@ -29,7 +28,7 @@ namespace Console
 
                 if (operation == "sum")
                 {
-                    result = test.Sum(x, y);
+                    result = test.Execute("sum",new object[] { (object)x, (object)y });
                 }
                 else if (operation == "divide")
                 {

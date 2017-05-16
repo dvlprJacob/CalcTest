@@ -10,9 +10,11 @@ namespace CalcLibrary
     {
         string Name { get; }
 
-        double Calc(double x);
-        double Calc(int x);
-        double Calc(double x, double y);
         double Calc(int x, int y);
+    }
+
+    public interface IOperationArgs : IOperation
+    {
+        double Calc(IEnumerable<int> args);
     }
 }

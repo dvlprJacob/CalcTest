@@ -1,0 +1,11 @@
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\SuperCalc\bin\Debug\SuperCalc.exe.config
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\SuperCalc\bin\Debug\SuperCalc.exe
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\SuperCalc\bin\Debug\SuperCalc.pdb
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\SuperCalc\obj\Debug\SuperCalc.csprojResolveAssemblyReference.cache
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\SuperCalc\obj\Debug\SuperCalc.Form1.resources
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\SuperCalc\obj\Debug\SuperCalc.Properties.Resources.resources
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\SuperCalc\obj\Debug\SuperCalc.csproj.GenerateResource.Cache
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\SuperCalc\obj\Debug\SuperCalc.exe
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\SuperCalc\obj\Debug\SuperCalc.pdb
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\SuperCalc\bin\Debug\CalcLibrary.dll
+C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\SuperCalc\bin\Debug\CalcLibrary.pdb
