@@ -7,20 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CalcLibrary;
 
 namespace SuperCalc
 {
     public partial class Form1 : Form
     {
+        private class OperationBeauty
+        {
+            public CalcLibrary.IOperation Operation { get; set; }
+            public string Name { get; set; }
+            public OperationBeauty(CalcLibrary.IOperation operation)
+            {
+                Operation = operation;
+                var type = operation.GetType();
+                Name = $"{type.Name}.{operation.Name}";
+            }
+        }
         private CalcLibrary.Calc Calc { get; set; }
         public Form1()
         {
             InitializeComponent();
             Calc = new CalcLibrary.Calc();
 
-            //cbOper.Items.AddRange(Calc.Operations.Select(o => o.Name).ToArray());
-
-            cbOper.DataSource = Calc.Operations;
+            cbOper.DataSource = Calc.Operations.Select(o => new OperationBeauty(o)).ToList();
             cbOper.DisplayMember = "Name";
         }
 
@@ -28,7 +38,9 @@ namespace SuperCalc
         {
             lResult.Text = "";
 
-            var oper = cbOper.Text;
+            var operB = cbOper.SelectedItem as OperationBeauty;
+            var oper = operB.Operation is IOperationArgs;
+
             object result = null;
 
             var moreArgs = cbOper.SelectedItem is CalcLibrary.IOperationArgs;

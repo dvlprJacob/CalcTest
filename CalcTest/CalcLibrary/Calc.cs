@@ -10,19 +10,25 @@ namespace CalcLibrary
 {
     public class Calc
     {
+        public string ExtendDllDirectory { get; set; }
+
+        public Calc() : this("")
+        { }
+
         /// <summary>
         /// 
         /// </summary>
-        public Calc()
+        public Calc(string extendDllDirectory)
         {
             Operations = new List<IOperation>();
 
-            //var assm = Assembly.GetAssembly(typeof(IOperation));
-            //var types = assm.GetTypes().ToList();
             var types = new List<Type>();
 
-            // найти dll радом с нашим exe
-            var dlls = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.dll");
+            var path = string.IsNullOrWhiteSpace(extendDllDirectory)
+                ? Directory.GetCurrentDirectory()
+                : extendDllDirectory;
+
+            var dlls = Directory.GetFiles(path, "*.dll");
             foreach (var dll in dlls)
             {
                 // загрузить ее как сборку
@@ -35,14 +41,12 @@ namespace CalcLibrary
 
             foreach (var type in types)
             {
-                //проверять по нему
-                //type.FullName
-                //distinct
-                //переписать execute, чтоб принимала IOperation
                 if (type.IsInterface)
                     continue;
+
                 var interfaces = type.GetInterfaces();
-                if (interfaces.Contains(ioper))
+
+                if (interfaces.Any(i => i.FullName == ioper.FullName))
                 {
                     var oper = Activator.CreateInstance(type) as IOperation;
                     if (oper != null)
@@ -70,6 +74,8 @@ namespace CalcLibrary
             //находим опер в списке доступных иначе возвращ ошибку,если нашли - разбираем аргументы,
             //вызываем саму опер и возвр результат
 
+            if (operation == null)
+                return null;
             var oper = Operations.FirstOrDefault(it => it.Name == operation.Name); // лямбда-выражение
 
             //Если не нашли
@@ -133,42 +139,12 @@ namespace CalcLibrary
         [Obsolete]
         public object Execute(string operation, object[] args)
         {
-            //находим опер в списке доступных иначе возвращ ошибку,если нашли - разбираем аргументы,
-            //вызываем саму опер и возвр результат
-
-            var oper = Operations.FirstOrDefault(it => it.Name == operation); // лямбда-выражение
-
-            //Если не нашли
-            if (oper == null)
-            {
-                return "Error";
-            }
-            // если нашли, вызываем саму операцию
-            double result = 0;
-
-            var operArgs = oper as IOperationArgs;
-            if (operArgs != null)
-            {
-
-                result = operArgs.Calc(
-                    args.Select(it => int.Parse(it.ToString()))
-                    );
-
-            }
-            else
-            {
-                //разбираем аргументы
-                int x;
-                int.TryParse(args[0].ToString(), out x);
-
-                int y;
-                int.TryParse(args[1].ToString(), out y);
-
-                result = oper.Calc(x, y);
-            }
-            return result;
+            var oper = Operations.FirstOrDefault(x => x.Name == operation);
+            if (oper is IOperationArgs)
+                return Execute(oper as IOperationArgs, args);
+            return Execute(oper, args);
         }
-        /*
+
         [Obsolete("Не использовать")]
         public int Sum(int x, int y)
         {
@@ -183,6 +159,5 @@ namespace CalcLibrary
             var r = Execute("divide", new object[] { x, y });
             return int.Parse(r.ToString());
         }
-        */
     }
 }

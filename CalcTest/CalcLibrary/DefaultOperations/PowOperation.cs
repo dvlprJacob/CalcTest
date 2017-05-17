@@ -20,7 +20,7 @@ namespace CalcLibrary.DefaultOperations
             double result = tmp[0];
             for(int i=1;i<tmp.Count;i++)
             {
-                result *= tmp[i];
+                result = Math.Pow(result, tmp[i]);
             }
             return result;
         }
