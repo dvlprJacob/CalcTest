@@ -1,7 +1,0 @@
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\ExcelOperations\bin\Debug\ExcelOperations.dll
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\ExcelOperations\bin\Debug\ExcelOperations.pdb
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\ExcelOperations\bin\Debug\CalcLibrary.dll
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\ExcelOperations\bin\Debug\CalcLibrary.pdb
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\ExcelOperations\obj\Debug\ExcelOperations.csprojResolveAssemblyReference.cache
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\ExcelOperations\obj\Debug\ExcelOperations.dll
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\ExcelOperations\obj\Debug\ExcelOperations.pdb

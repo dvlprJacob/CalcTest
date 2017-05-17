@@ -20,9 +20,12 @@ namespace WebCalc.Controllers
         {
             var calc = new CalcLibrary.Calc(@"C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\WebCalc\bin\");
 
+            model.GetOperations();
+            
             var result = calc.Execute(model.Operation, model.InputData.Split(' '));
 
             model.Result = $"{result}";
+            
 
             return View(model);
         }

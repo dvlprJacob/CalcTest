@@ -1,0 +1,87 @@
+﻿@model WebCalc.Models.OperationViewModel
+
+@{
+    ViewBag.Title = "Calculator";
+}
+
+<h2>Index</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>OperationViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+     
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Operation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Operation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Operation, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InputData, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InputData, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InputData, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Result, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Result, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @*//@Html.ValidationMessageFor(model => model.Result, "", new { @class = "text-danger" })*@
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Operations, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Operations, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <p>
+                <strong>
+                    "Имена операций загрузил, возникли проблемы с выводом в DropDownList."
+                    <br />
+                    "Для этого добавил класс OperationBeauty, поле IList<"srting"> Operations, метод GetOperations() в класс OperationViewModel."
+                    <br />
+                    "Вызов GetOperations обьявил в CalcController.Index(OperationViewModel model)."
+                </strong>
+            </p>
+        </div>
+        @*
+            Имена операций загрузил, возникли проблемы с выводом в DropDownList
+        *@
+
+        @*@{
+            if (Model.Operations != null)
+            {
+                Html.DropDownList("Operations", new SelectList(Model.Operations));
+            }
+        }*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Calc" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
