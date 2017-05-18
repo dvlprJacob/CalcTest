@@ -9,6 +9,9 @@ using WebCalc.Models;
 using System.IO;
 using System.Reflection;
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 namespace WebCalc.Models
 {
     public class OperationBeauty
@@ -25,9 +28,9 @@ namespace WebCalc.Models
     public class OperationViewModel
     {
         // Выпадающий список доступных операций
-        public IList<string> Operations { get; set; }
+        //public IList<string> Operations { get; set; }
         // Загрузка доступных операций
-        public void GetOperations()
+        /*public void GetOperations()
         {
             IList<string> Operations;
             Operations = new List<string>();
@@ -68,10 +71,31 @@ namespace WebCalc.Models
             }
             this.Operations = Operations;
             return;
+        }*/
+
+        public OperationViewModel()
+        {
+            Operations = new List<SelectListItem>();
         }
+
+        public OperationViewModel(IEnumerable<SelectListItem> operations)
+        {
+            Operations = operations;
+        }
+
+        [Display(Name = "Операция")]
+        [Required]
         public string Operation { get; set; }
+
+        [Display(Name = "Параметры")]
+        [Required]
         public string InputData { get; set; }
+
+        [Display(Name = "Результат")]
+        [ReadOnly(true)]
         public string Result { get; set; }
+
+        public IEnumerable<SelectListItem> Operations { get; set; }
 
     }
 }
