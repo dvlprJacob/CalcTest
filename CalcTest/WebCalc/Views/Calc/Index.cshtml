@@ -41,6 +41,13 @@
                 <input type="submit" value="Вычислить" class="btn btn-default" />
             </div>
         </div>
+
+        <h2>@Html.Encode(ViewData["Message"])</h2>
+        <p>
+            <li> @Html.ActionLink("История", "EditorTemplates/OperationHistory", "Shared")</li>
+            @Html.EnumDropDownListFor(model => model.OperationHistory);
+        </p>
+        
     </div>
 }
 

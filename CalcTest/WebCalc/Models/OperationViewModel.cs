@@ -11,6 +11,7 @@ using System.Reflection;
 
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using WebCalc.Managers;
 
 namespace WebCalc.Models
 {
@@ -39,6 +40,10 @@ namespace WebCalc.Models
         public string Result { get; set; }
 
         public IEnumerable<SelectListItem> Operations { get; set; }
+
+
+        // Operations history
+        public IEnumerable<OperationResult> OperationHistory;
 
     }
 }

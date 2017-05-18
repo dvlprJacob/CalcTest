@@ -247,6 +247,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Calc\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Operation.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\OperationHistory.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

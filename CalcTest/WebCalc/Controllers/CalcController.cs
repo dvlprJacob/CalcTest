@@ -8,6 +8,7 @@ using CalcLibrary;
 using WebCalc.Managers;
 using System.Diagnostics;
 using System.Threading;
+using WebCalc.Helpers;
 
 namespace WebCalc.Controllers
 {
@@ -26,10 +27,25 @@ namespace WebCalc.Controllers
             OperationList = Calc.Operations.Select(o => new SelectListItem() { Text = $"{o.GetType().Name}.{o.Name}", Value = $"{o.GetType().Name}.{o.Name}" });
             OperationResultRepository = new OperationManager();
         }
+        // History
+        public ViewResult OperationHistory()
+        {
+            var model = new OperationViewModel(OperationList);
+
+            // Загрузим историю операцийп при первоначальной загрузке страницы
+            model.OperationHistory = OperationResultRepository.GetAll();
+
+            Redirect("Shared/EditorTemplates/OperationHistory");
+            return View(model);
+        }
         // GET: Calc
         public ActionResult Index()
         {
             var model = new OperationViewModel(OperationList);
+
+            // Загрузим историю операцийп при первоначальной загрузке страницы
+            model.OperationHistory = OperationResultRepository.GetAll();
+
             return View(model);
         }
         [HttpPost]
