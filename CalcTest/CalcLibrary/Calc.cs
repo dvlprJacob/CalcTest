@@ -72,6 +72,8 @@ namespace CalcLibrary
         /// <returns></returns>
         public object Execute(IOperation operation, object[] args)
         {
+            if (operation is IOperationArgs)
+                return Execute(operation as IOperationArgs, args);
             //находим опер в списке доступных иначе возвращ ошибку,если нашли - разбираем аргументы,
             //вызываем саму опер и возвр результат
 

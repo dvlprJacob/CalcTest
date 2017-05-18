@@ -19,7 +19,7 @@ namespace WebCalc.Managers
             var records = DBHelper.GetAllFromTable("OperationResult");
 
             // Разобрать что вытащили и конвертировать в OperationResult
-            foreach(IDictionary<int,object> record in records)
+            foreach (IDictionary<int, object> record in records)
             {
                 items.Add(
                     new OperationResult()
@@ -45,7 +45,15 @@ namespace WebCalc.Managers
 
         public void Save(OperationResult entity)
         {
-            throw new NotImplementedException();
+            var fields = new List<object>()
+            {
+                entity.OperationName,
+                entity.Arguments,
+                entity.Result,
+                entity.ExecutionTime,
+                entity.ExecutionDate.ToString("MM-dd-yyyy HH:mm:ss")
+            };
+            DBHelper.InsertTable("OperationResult", fields);
         }
 
         public void Update(OperationResult entity)

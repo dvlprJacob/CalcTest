@@ -9,7 +9,7 @@ namespace WebCalc.Managers
     /// <summary>
     /// Базовый интерфейс хранилища данных
     /// </summary>
-    interface IBaseRepository<T> where T : class
+    public interface IBaseRepository<T> where T : class
     {
         T Load(long id);
         void Save(T entity);

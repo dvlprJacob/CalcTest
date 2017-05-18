@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebCalc.Managers
 {
-    interface IOperationResultRepository : IBaseRepository<OperationResult>
+    public interface IOperationResultRepository : IBaseRepository<OperationResult>
     {
     }
 }
