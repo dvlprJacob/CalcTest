@@ -35,7 +35,7 @@ namespace WebCalc.Controllers
             // Загрузим историю операцийп при первоначальной загрузке страницы
             model.OperationHistory = OperationResultRepository.GetAll();
 
-            Redirect("Shared/EditorTemplates/OperationHistory");
+            //Redirect("Shared/EditorTemplates/OperationHistory");
             return View(model);
         }
         // GET: Calc
