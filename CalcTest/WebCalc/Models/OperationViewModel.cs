@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using CalcLibrary;
-
-using System.Web.Mvc;
-using WebCalc.Models;
-using System.IO;
-using System.Reflection;
-
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using WebCalc.Managers;
+using System.Web.Mvc;
 
 namespace WebCalc.Models
 {
@@ -40,10 +30,6 @@ namespace WebCalc.Models
         public string Result { get; set; }
 
         public IEnumerable<SelectListItem> Operations { get; set; }
-
-
-        // Operations history
-        public IEnumerable<OperationResult> OperationHistory;
 
     }
 }

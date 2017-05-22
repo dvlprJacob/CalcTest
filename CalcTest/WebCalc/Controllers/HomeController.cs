@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System;
 using System.Web.Mvc;
 
 namespace WebCalc.Controllers
@@ -16,8 +16,6 @@ namespace WebCalc.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
-            // ViewBag.Trololo = "dsapofhSDfsdgfsd fsgbs"; -> В View вызываем @Trololo ...
 
             return View();
         }

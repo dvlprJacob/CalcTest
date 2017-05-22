@@ -12,6 +12,8 @@ using WebCalc.Models;
 using DBModel.Managers;
 using System.Web.Security;
 using DBModel.Models;
+using WebCalc.Managers;
+using DBModel.Helpers;
 
 namespace WebCalc.Controllers
 {
@@ -20,12 +22,16 @@ namespace WebCalc.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IUserRepository UserRepository;
+
 
         public AccountController()
         {
+            var calcContext = new CalcContext();
+            UserRepository = new UserRepository(calcContext);
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -37,9 +43,9 @@ namespace WebCalc.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -76,14 +82,13 @@ namespace WebCalc.Controllers
                 return View(model);
             }
 
-            var userRepository = new UserRepository();
-
-            if(userRepository.Validate(model.Email, model.Password))
+            if (UserRepository.Validate(model.Email, model.Password))
             {
                 FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
 
                 return RedirectToLocal(returnUrl);
             }
+
             ModelState.AddModelError("", "Неудачная попытка входа.");
             return View(model);
         }
@@ -117,7 +122,7 @@ namespace WebCalc.Controllers
             // Если пользователь введет неправильные коды за указанное время, его учетная запись 
             // будет заблокирована на заданный период. 
             // Параметры блокирования учетных записей можно настроить в IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -148,14 +153,13 @@ namespace WebCalc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userRepository = new UserRepository();
-                if (userRepository.GetAll().Any(u => u.Email == model.Email))
+                if (UserRepository.GetAll().Any(u => u.Email == model.Email))
                 {
-                    ModelState.AddModelError("", "Этот Email уже занят");
+                    ModelState.AddModelError("", "Этот email уже занят");
                 }
                 else
                 {
-                    var user = new User()
+                    var user = new User
                     {
                         Name = model.Email,
                         Login = model.Email,
@@ -164,11 +168,12 @@ namespace WebCalc.Controllers
                         BirthDate = DateTime.Now.AddDays(new Random().Next(10000, 30000) * -1),
                     };
 
-                    userRepository.Save(user);
+                    UserRepository.Save(user);
+
                     FormsAuthentication.SetAuthCookie(model.Email, true);
 
+                    return RedirectToAction("Index", "Home");
                 }
-                return RedirectToAction("Index", "Home");
             }
 
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы
@@ -395,7 +400,6 @@ namespace WebCalc.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
 

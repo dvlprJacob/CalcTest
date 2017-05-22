@@ -5,38 +5,35 @@ using System.Text;
 using System.Threading.Tasks;
 using DBModel.Helpers;
 using WebCalc.Managers;
-
-
+using System.Data.Entity;
+using DBModel.Models;
+using DBModel.Helpers;
 
 namespace DBModel.Managers
 {
-    public class EFOperResultRepository : IOperationResultRepository
+    public class EFOperResultRepository : BaseRepository<OperationResult>, IOperationResultRepository
     {
-        public IEnumerable<OperationResult> GetAll()
+        private DbSet<OperationResult> OperationResults { get; set; }
+
+        public EFOperResultRepository(DbContext context) : base(context)
         {
-            using (var context = new OperationResultContext())
-            {
-                return context.OperationResults.ToList();
-            }
+            OperationResults = context.Set<OperationResult>();
         }
 
-        public OperationResult Load(long id)
+        public override IEnumerable<OperationResult> GetAll()
         {
-            throw new NotImplementedException();
+            return OperationResults.ToList();
         }
 
-        public void Save(OperationResult entity)
+        public override IEnumerable<OperationResult> GetAll(bool flag)
         {
-            using (var context = new OperationResultContext())
-            {
-                context.OperationResults.Add(entity);
-                context.SaveChanges();
-            }
+            return flag ? OperationResults.Include(item => item.Iniciator).ToList() : GetAll();
         }
 
-        public void Update(OperationResult entity)
+        public override void Save(OperationResult entity)
         {
-            throw new NotImplementedException();
+            OperationResults.Add(entity);
+            _db.SaveChanges();
         }
     }
 }

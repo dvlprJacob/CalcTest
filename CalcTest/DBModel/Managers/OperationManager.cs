@@ -5,6 +5,7 @@ using System.Web;
 using WebCalc.Helpers;
 using System.Data;
 using System.Data.SqlClient;
+using DBModel.Models;
 
 namespace WebCalc.Managers
 {
@@ -14,28 +15,36 @@ namespace WebCalc.Managers
         {
             var items = new List<OperationResult>();
 
-            // Соедениться с БД
+            // Подключиться к БД 
             // Вытащить все записи
             var records = DBHelper.GetAllFromTable("OperationResult");
 
-            // Разобрать что вытащили и конвертировать в OperationResult
+            // Разобрать то, что вытащили и превратить в OperationResult
             foreach (IDictionary<int, object> record in records)
             {
                 items.Add(
                     new OperationResult()
                     {
-                        Id = (int)record[0], // record["Id"] as long
+                        Id = (int)record[0],
                         OperationName = record[1].ToString(),
                         Arguments = record[2].ToString(),
                         Result = record[3] as double?,
                         ExecutionTime = (long)record[4],
                         ExecutionDate = (DateTime)record[5]
                     }
-                    );
+                );
+
+
             }
+
 
             // Отдать
             return items;
+        }
+
+        public IEnumerable<OperationResult> GetAll(bool flag)
+        {
+            return GetAll();
         }
 
         public OperationResult Load(long id)
@@ -52,6 +61,7 @@ namespace WebCalc.Managers
                 entity.Result,
                 entity.ExecutionTime,
                 entity.ExecutionDate.ToString("MM-dd-yyyy HH:mm:ss")
+
             };
             DBHelper.InsertTable("OperationResult", fields);
         }

@@ -66,14 +66,15 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
-    <Compile Include="Helpers\UserContext.cs" />
     <Compile Include="Helpers\OperationResultContext.cs" />
+    <Compile Include="Interfaces\BaseRepository.cs" />
     <Compile Include="Interfaces\IBaseRepository.cs" />
-    <Compile Include="Interfaces\IOperationResultRepository - Копировать.cs" />
+    <Compile Include="Interfaces\IOperationResultRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Managers\EFOperResultRepository.cs" />
     <Compile Include="Managers\OperationManager.cs" />
     <Compile Include="Managers\UserRepository.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\OperationResult.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

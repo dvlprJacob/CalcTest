@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using WebCalc.Models;
-using CalcLibrary;
-using WebCalc.Managers;
-using System.Diagnostics;
-using System.Threading;
+﻿using CalcLibrary;
 using DBModel.Helpers;
 using DBModel.Managers;
 using DBModel.Models;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading;
+using System.Web;
+using System.Web.Mvc;
+using WebCalc.Managers;
+using WebCalc.Models;
 
 namespace WebCalc.Controllers
 {
@@ -18,63 +18,51 @@ namespace WebCalc.Controllers
     public class CalcController : Controller
     {
         #region Private Members
+
         private Calc Calc { get; set; }
 
-        private IUserRepository UserRepository { get; set; }
         private IEnumerable<SelectListItem> OperationList { get; set; }
 
         private IOperationResultRepository OperationResultRepository { get; set; }
+
+        private IUserRepository UserRepository { get; set; }
+
         #endregion
+
         public CalcController()
         {
-            Calc = new Calc(@"C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\WebCalc\bin");
+            Calc = new Calc(@"C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\WebCalc\bin\");
             OperationList = Calc.Operations.Select(o => new SelectListItem() { Text = $"{o.GetType().Name}.{o.Name}", Value = $"{o.GetType().Name}.{o.Name}" });
 
-            //OperationResultRepository = new OperationManager(); ->
-            OperationResultRepository = new EFOperResultRepository();
-            UserRepository = new UserRepository();
+            var calcContext = new CalcContext();
+            OperationResultRepository = new EFOperResultRepository(calcContext);
+            UserRepository = new UserRepository(calcContext);
         }
 
-        //
         private User GetCurrentUser()
         {
             return UserRepository.GetAll().FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
         }
 
-        // History
-        public ViewResult OperationHistory()
-        {
-            var model = new OperationViewModel(OperationList);
-
-            // Загрузим историю операций при для view
-            model.OperationHistory = OperationResultRepository.GetAll();
-
-            return View(model);
-        }
         // GET: Calc
         public ActionResult Index()
         {
             var model = new OperationViewModel(OperationList);
-
-            // Загрузим историю операцийп при первоначальной загрузке страницы
-            model.OperationHistory = OperationResultRepository.GetAll();
-
             return View(model);
         }
+
         [HttpPost]
         public ActionResult Index(OperationViewModel model)
         {
-            #region Поиск в базе
             var operResults = OperationResultRepository.GetAll();
-            #endregion
 
             var oldResult = operResults.FirstOrDefault(
-                op => op.OperationName == model.Operation
-                && op.Arguments == model.InputData);
+                op => op.OperationName == model.Operation && op.Arguments == model.InputData.Trim()
+            );
 
             if (oldResult != null)
             {
-                model.Result = $"Это уже вычисляли {oldResult.Iniciator?.Name}  {oldResult.ExecutionDate}( заняло {oldResult.ExecutionTime} ms ) и получили {oldResult.Result}";
+                model.Result = $"Это уже вычислял {oldResult.Iniciator?.Name}  {oldResult.ExecutionDate}(заняло {oldResult.ExecutionTime} ms.) и получили {oldResult.Result}";
             }
             else
             {
@@ -84,7 +72,8 @@ namespace WebCalc.Controllers
                 var names = model.Operation.Split('.');
                 var opers = Calc.Operations.Where(o => o.Name == names[1]);
                 var oper = opers.FirstOrDefault(o => o.GetType().Name == names[0]);
-                var result = Calc.Execute(oper, model.InputData.Split(' '));
+                var result = Calc.Execute(oper, model.InputData.Trim().Split(' '));
+                Thread.Sleep(new Random().Next(1, 100));
                 stopWatch.Stop();
 
                 model.Result = $"{result}";
@@ -98,10 +87,20 @@ namespace WebCalc.Controllers
                     ExecutionDate = DateTime.Now,
                     Iniciator = GetCurrentUser()
                 };
+
                 OperationResultRepository.Save(operResult);
             }
+
             model.Operations = OperationList;
+
             return View(model);
+        }
+
+
+        public ActionResult History()
+        {
+            ViewData.Model = OperationResultRepository.GetAll(true);
+            return View();
         }
     }
 }

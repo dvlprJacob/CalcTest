@@ -10,7 +10,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Выберите операцию, введите параметры и получить результат!</h4>
+        <h4>Выберите операцию, введите параметры и получить результат.</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -41,12 +41,6 @@
                 <input type="submit" value="Вычислить" class="btn btn-default" />
             </div>
         </div>
-
-        <h2>@Html.Encode(ViewData["Message"])</h2>
-        <p>
-            <li> @Html.ActionLink("История операций", "OperationHistory", "Calc")</li>
-        </p>
-        
     </div>
 }
 

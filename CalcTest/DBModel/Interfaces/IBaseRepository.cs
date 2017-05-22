@@ -15,5 +15,12 @@ namespace WebCalc.Managers
         void Save(T entity);
         void Update(T entity);
         IEnumerable<T> GetAll();
+        /// <summary>
+        /// Загрузить все сущности
+        /// </summary>
+        /// <param name="flag"></param>Автоматически подгрузить все зависимости
+        /// <returns></returns>
+        IEnumerable<T> GetAll(bool flag);
+
     }
 }
