@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using DBModel.Models;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebCalc.Managers
 {
+    [Table("OperationResult")]
     public class OperationResult
     {
         /// <summary>
         /// Результат выполнения операции
         /// </summary>
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string OperationName { get; set; }
         public string Arguments { get; set; }
         public double? Result { get; set; }
@@ -19,5 +19,11 @@ namespace WebCalc.Managers
         /// </summary>
         public long ExecutionTime { get; set; }
         public DateTime ExecutionDate { get; set; }
+        /// <summary>
+        /// Инициатор
+        /// </summary>
+        public virtual User Iniciator { get; set; }
+        
+        public long? IniciatorId { get; set; }
     }
 }

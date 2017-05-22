@@ -8,15 +8,19 @@ using CalcLibrary;
 using WebCalc.Managers;
 using System.Diagnostics;
 using System.Threading;
-using WebCalc.Helpers;
+using DBModel.Helpers;
+using DBModel.Managers;
+using DBModel.Models;
 
 namespace WebCalc.Controllers
 {
+    [Authorize]
     public class CalcController : Controller
     {
         #region Private Members
         private Calc Calc { get; set; }
 
+        private IUserRepository UserRepository { get; set; }
         private IEnumerable<SelectListItem> OperationList { get; set; }
 
         private IOperationResultRepository OperationResultRepository { get; set; }
@@ -25,17 +29,26 @@ namespace WebCalc.Controllers
         {
             Calc = new Calc(@"C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\WebCalc\bin");
             OperationList = Calc.Operations.Select(o => new SelectListItem() { Text = $"{o.GetType().Name}.{o.Name}", Value = $"{o.GetType().Name}.{o.Name}" });
-            OperationResultRepository = new OperationManager();
+
+            //OperationResultRepository = new OperationManager(); ->
+            OperationResultRepository = new EFOperResultRepository();
+            UserRepository = new UserRepository();
         }
+
+        //
+        private User GetCurrentUser()
+        {
+            return UserRepository.GetAll().FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
+        }
+
         // History
         public ViewResult OperationHistory()
         {
             var model = new OperationViewModel(OperationList);
 
-            // Загрузим историю операцийп при первоначальной загрузке страницы
+            // Загрузим историю операций при для view
             model.OperationHistory = OperationResultRepository.GetAll();
 
-            //Redirect("Shared/EditorTemplates/OperationHistory");
             return View(model);
         }
         // GET: Calc
@@ -61,7 +74,7 @@ namespace WebCalc.Controllers
 
             if (oldResult != null)
             {
-                model.Result = $"Это уже вычисляли {oldResult.ExecutionDate}( заняло {oldResult.ExecutionTime} ms ) и получили {oldResult.Result}";
+                model.Result = $"Это уже вычисляли {oldResult.Iniciator?.Name}  {oldResult.ExecutionDate}( заняло {oldResult.ExecutionTime} ms ) и получили {oldResult.Result}";
             }
             else
             {
@@ -82,7 +95,8 @@ namespace WebCalc.Controllers
                     Result = result as double?,
                     Arguments = model.InputData.Trim(),
                     ExecutionTime = stopWatch.ElapsedMilliseconds * 10,
-                    ExecutionDate = DateTime.Now
+                    ExecutionDate = DateTime.Now,
+                    Iniciator = GetCurrentUser()
                 };
                 OperationResultRepository.Save(operResult);
             }

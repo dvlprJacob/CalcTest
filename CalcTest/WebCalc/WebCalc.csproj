@@ -174,11 +174,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\DBHelper.cs" />
-    <Compile Include="Managers\IBaseRepository.cs" />
-    <Compile Include="Managers\IOperationResultRepository.cs" />
-    <Compile Include="Managers\OperationManager.cs" />
-    <Compile Include="Managers\OperationResult.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -187,10 +182,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\CalcStorage.mdf" />
-    <Content Include="App_Data\CalcStorage_log.ldf">
-      <DependentUpon>CalcStorage.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -249,7 +240,9 @@
     <Content Include="Views\Shared\EditorTemplates\Operation.cshtml" />
     <Content Include="Views\Calc\OperationHistory.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -262,6 +255,10 @@
     <ProjectReference Include="..\CalcLibrary\CalcLibrary.csproj">
       <Project>{7cd304ed-87b9-4a6e-ad11-558c88d9b85c}</Project>
       <Name>CalcLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBModel\DBModel.csproj">
+      <Project>{b9909f2b-1c04-4276-9268-14ea5f723722}</Project>
+      <Name>DBModel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

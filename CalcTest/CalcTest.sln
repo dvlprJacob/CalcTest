@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelOperations", "ExcelOpe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCalc", "WebCalc\WebCalc.csproj", "{36BBBB84-2FC4-487C-BFB3-901372A41478}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBModel", "DBModel\DBModel.csproj", "{B9909F2B-1C04-4276-9268-14EA5F723722}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{36BBBB84-2FC4-487C-BFB3-901372A41478}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36BBBB84-2FC4-487C-BFB3-901372A41478}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36BBBB84-2FC4-487C-BFB3-901372A41478}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9909F2B-1C04-4276-9268-14EA5F723722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9909F2B-1C04-4276-9268-14EA5F723722}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9909F2B-1C04-4276-9268-14EA5F723722}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9909F2B-1C04-4276-9268-14EA5F723722}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
