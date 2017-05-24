@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace CalcLibrary.DefaultOperations
 {
-    public class DivideOneOperation : IOperation
+    class DivideOneOperation : IOperation
     {
-        public string Name
-        {
-            get { return "divide"; }
-        }
+        public string Name { get { return "divide"; } }
 
         public double Calc(int x, int y)
         {
-            return x * 1d / y;
+            if(y!=0)
+            {
+                return x * 1d / y;
+            }
+            else
+            {
+                return double.NaN;
+            }
         }
     }
 }

@@ -6,21 +6,28 @@ using System.Threading.Tasks;
 
 namespace CalcLibrary.DefaultOperations
 {
-    public class DivideOperation : IOperationArgs
+    class DivideOperation : CalcLibrary.IOperationArgs
     {
-        public string Name
-        {
-            get { return "divide"; }
-        }
-
-        public double Calc(IEnumerable<int> args)
-        {
-            return 0;
-        }
+        public string Name { get { return "divide"; } }
 
         public double Calc(int x, int y)
         {
-            return x / y;
+            if (y != 0)
+            {
+                return x * 1d / y;
+            }
+            else
+                return double.NaN;
+        }
+        public double Calc(IEnumerable<int> args)
+        {
+            var tmp = args.ToArray();
+            double result = tmp[0];
+            for(int i=1;i<tmp.Count();i++)
+            {
+                result /= tmp[i];
+            }
+            return result;
         }
     }
 }

@@ -31,7 +31,7 @@ namespace WebCalc.Controllers
 
         public CalcController()
         {
-            Calc = new Calc(@"g:\work\CalcTest\CalcTest\WebCalc\bin\");
+            Calc = new Calc(@"C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\WebCalc\bin\");
             OperationList = Calc.Operations.Select(o => new SelectListItem() { Text = $"{o.GetType().Name}.{o.Name}", Value = $"{o.GetType().Name}.{o.Name}" });
 
             //var calcContext = new CalcContext();

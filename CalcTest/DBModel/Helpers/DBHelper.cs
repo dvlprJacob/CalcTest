@@ -7,7 +7,7 @@ namespace WebCalc.Helpers
 {
     public static class DBHelper
     {
-        public const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=G:\work\CalcTest\CalcTest\DBModel\App_Data\CalcStorage.mdf;Integrated Security=True";
+        public const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\DBModel\App_Data\CalcStorage.mdf;Integrated Security=True";
 
         public static IEnumerable<object> GetAllFromTable(string table)
         {
