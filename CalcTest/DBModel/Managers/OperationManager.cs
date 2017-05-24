@@ -47,6 +47,16 @@ namespace WebCalc.Managers
             return GetAll();
         }
 
+        public IDictionary<string, int> GetTop()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDictionary<string, int> GetTop(int limit)
+        {
+            throw new NotImplementedException();
+        }
+
         public OperationResult Load(long id)
         {
             throw new NotImplementedException();

@@ -2,12 +2,23 @@
 
 @{
     ViewBag.Title = "History";
+
+    var topOperations = ViewBag.TopOperations as IDictionary<string, int>;
 }
 
-<h2>History</h2>
+<h2>История операций</h2>
 
 <p>
-    @Html.ActionLink("Вычислить что-то", "Index")
+    @Html.ActionLink("Вычислить что-то", "Index", null, new { @class = "btn btn-default" })
+
+    @Html.ActionLink("Все операции", "History", null, new { @class = "btn btn-primary" })
+
+    @foreach (var top in topOperations)
+    {
+        @:&nbsp;
+        @Html.ActionLink($"{top.Key} ({top.Value})", "History", new { oper = top.Key }, new { @class = "btn btn-warning" })
+
+    }
 </p>
 <table class="table">
     <tr>

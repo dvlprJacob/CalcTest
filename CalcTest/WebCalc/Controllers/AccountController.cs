@@ -28,7 +28,7 @@ namespace WebCalc.Controllers
         public AccountController()
         {
             var calcContext = new CalcContext();
-            UserRepository = new UserRepository(calcContext);
+            UserRepository = new NHUserRepository();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)

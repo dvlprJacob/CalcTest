@@ -28,7 +28,7 @@ namespace Console
 
                 if (operation == "sum")
                 {
-                    result = test.Execute("sum",new object[] { (object)x, (object)y });
+                    result = 0;
                 }
                 else if (operation == "divide")
                 {
@@ -36,11 +36,11 @@ namespace Console
                 }
                 else if(operation == "pow")
                 {
-                    result = test.Pow(x, y);
+                    result = 0;
                 }
                 else if(operation == "multiply")
                 {
-                    result = test.Multiply(x, y);
+                    result = 0;
                 }
 
                 Output.WriteLine($"{x} {operation} {y} = {result}");
@@ -54,11 +54,11 @@ namespace Console
 
                 if (operation == "sqrt")
                 {
-                    result = test.Sqrt(x);
+                    result = 0;
                 }
                 else if (operation == "abs")
                 {
-                    result = test.Abs(x);
+                    result = 0;
                 }
 
                 Output.WriteLine($"{operation} ({x}) = {result}");

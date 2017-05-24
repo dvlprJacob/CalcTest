@@ -10,25 +10,25 @@ namespace DBModel.Models
     [Table("OperationResult")]
     public class OperationResult
     {
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
-        public string OperationName { get; set; }
+        public virtual string OperationName { get; set; }
 
-        public string Arguments { get; set; }
+        public virtual string Arguments { get; set; }
 
-        public double? Result { get; set; }
+        public virtual double? Result { get; set; }
 
-        public bool NeedUpdate { get; set; }
+        public virtual bool NeedUpdate { get; set; }
 
         /// <summary>
         /// Продолжительность выполнения операции
         /// </summary>
-        public long ExecutionTime { get; set; }
+        public virtual long ExecutionTime { get; set; }
 
         /// <summary>
         /// Дата выполнения операции
         /// </summary>
-        public DateTime ExecutionDate { get; set; }
+        public virtual DateTime ExecutionDate { get; set; }
 
         /// <summary>
         /// Инициатор

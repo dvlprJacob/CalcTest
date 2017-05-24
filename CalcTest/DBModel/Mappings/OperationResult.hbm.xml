@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DBModel"
+                   namespace="DBModel.Models">
+
+  <class name="OperationResult" table="OperationResult">
+    <id name="Id">
+      <generator class="identity" />
+    </id>
+    <property name="OperationName" />
+    <property name="Arguments" />
+    <property name="Result" />
+    <property name="NeedUpdate" />
+    <property name="ExecutionTime" />
+    <property name="ExecutionDate" />
+
+    <many-to-one name="Iniciator" class="User" column="Iniciator_id" lazy="false"/>
+
+  </class>
+
+</hibernate-mapping>

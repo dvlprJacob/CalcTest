@@ -43,19 +43,19 @@ namespace CalcTest
 
             
             */
-            var sqrt_res = test.Sqrt((double)9);
+            var sqrt_res = 0;
             Assert.AreEqual(sqrt_res, Math.Sqrt(9));
 
 
             for (int i = 0; i < 6; i++)
             {
-                var pow_res = test.Pow(10, i);
+                var pow_res = 0;
                 Assert.AreEqual(pow_res, Math.Pow(10, i));
             }
 
             for (int i = 0; i < 6; i++)
             {
-                var mult_res = test.Multiply(10, i);
+                var mult_res = 0;
                 Assert.AreEqual(mult_res, 10 * i);
             }
 

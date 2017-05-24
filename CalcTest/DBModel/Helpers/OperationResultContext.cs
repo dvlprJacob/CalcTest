@@ -9,6 +9,7 @@ using WebCalc.Managers;
 
 namespace DBModel.Helpers
 {
+    [Obsolete("ent frm Отстой",true)]
     public class CalcContext : DbContext
     {
         public CalcContext():base("EFConnection")

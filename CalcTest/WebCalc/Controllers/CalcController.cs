@@ -34,9 +34,16 @@ namespace WebCalc.Controllers
             Calc = new Calc(@"C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\WebCalc\bin\");
             OperationList = Calc.Operations.Select(o => new SelectListItem() { Text = $"{o.GetType().Name}.{o.Name}", Value = $"{o.GetType().Name}.{o.Name}" });
 
-            var calcContext = new CalcContext();
-            OperationResultRepository = new EFOperResultRepository(calcContext);
-            UserRepository = new UserRepository(calcContext);
+            //entity frmwrk
+            //var calcContext = new CalcContext();
+            //OperationResultRepository = new EFOperResultRepository(calcContext);
+            //UserRepository = new UserRepository(calcContext);
+
+            //NHibernate
+            OperationResultRepository = new NHOperResultRepository();
+            UserRepository = new NHUserRepository();
+
+
         }
 
         private User GetCurrentUser()
@@ -97,10 +104,14 @@ namespace WebCalc.Controllers
         }
 
 
-        public ActionResult History()
+        public ActionResult History(string oper)
         {
-            ViewData.Model = OperationResultRepository.GetAll(true);
-            return View();
+            ViewBag.TopOperations = OperationResultRepository.GetTop(2);
+            var operations = !string.IsNullOrWhiteSpace(oper)
+               ? OperationResultRepository.GetAll(true).Where(o => o.OperationName == oper)
+                : OperationResultRepository.GetAll(true);
+
+            return View(operations);
         }
     }
 }
