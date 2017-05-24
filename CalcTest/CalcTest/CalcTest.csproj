@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E279192A-2AAA-453A-8BBF-5B2980A3AB81}</ProjectGuid>
+    <ProjectGuid>{19D8FCFD-4522-416D-B73B-5CB6FF9D994E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CalcTest</RootNamespace>
@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CalcLibrary\CalcLibrary.csproj">
-      <Project>{7cd304ed-87b9-4a6e-ad11-558c88d9b85c}</Project>
+      <Project>{8bb85ab7-d53c-40be-be6b-4f4b6b6c7f1f}</Project>
       <Name>CalcLibrary</Name>
     </ProjectReference>
   </ItemGroup>

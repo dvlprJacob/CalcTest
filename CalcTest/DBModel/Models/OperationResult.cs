@@ -7,7 +7,6 @@ namespace DBModel.Models
     /// <summary>
     /// Результат выполнения операции
     /// </summary>
-    [Table("OperationResult")]
     public class OperationResult
     {
         public virtual int Id { get; set; }
@@ -28,7 +27,7 @@ namespace DBModel.Models
         /// <summary>
         /// Дата выполнения операции
         /// </summary>
-        public virtual DateTime ExecutionDate { get; set; }
+        public virtual DateTime ExecutionDate  { get; set; }
 
         /// <summary>
         /// Инициатор

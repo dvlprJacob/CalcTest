@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{63A214CC-0BE8-470A-A487-3587D7986C8F}</ProjectGuid>
+    <ProjectGuid>{6DCA1560-3B0B-41CE-BFB8-51E3F8EE4CBC}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Console</RootNamespace>
@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CalcLibrary\CalcLibrary.csproj">
-      <Project>{7cd304ed-87b9-4a6e-ad11-558c88d9b85c}</Project>
+      <Project>{8bb85ab7-d53c-40be-be6b-4f4b6b6c7f1f}</Project>
       <Name>CalcLibrary</Name>
     </ProjectReference>
   </ItemGroup>

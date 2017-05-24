@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B111D7A5-7052-45E8-9229-9D72BB89D1CB}</ProjectGuid>
+    <ProjectGuid>{0FF38DD1-E6CA-4D1B-9214-A928513E16A9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SuperCalc</RootNamespace>
@@ -81,7 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CalcLibrary\CalcLibrary.csproj">
-      <Project>{7cd304ed-87b9-4a6e-ad11-558c88d9b85c}</Project>
+      <Project>{8bb85ab7-d53c-40be-be6b-4f4b6b6c7f1f}</Project>
       <Name>CalcLibrary</Name>
     </ProjectReference>
   </ItemGroup>

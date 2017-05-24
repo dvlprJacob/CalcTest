@@ -1,11 +1,9 @@
-﻿using System;
+﻿using DBModel.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using WebCalc.Helpers;
-using System.Data;
 using System.Data.SqlClient;
-using DBModel.Models;
+using System.Linq;
+using WebCalc.Helpers;
 
 namespace WebCalc.Managers
 {
@@ -20,7 +18,7 @@ namespace WebCalc.Managers
             var records = DBHelper.GetAllFromTable("OperationResult");
 
             // Разобрать то, что вытащили и превратить в OperationResult
-            foreach (IDictionary<int, object> record in records)
+            foreach(IDictionary<int, object> record in records)
             {
                 items.Add(
                     new OperationResult()
@@ -47,12 +45,7 @@ namespace WebCalc.Managers
             return GetAll();
         }
 
-        public IDictionary<string, int> GetTop()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IDictionary<string, int> GetTop(int limit)
+        public IDictionary<string, int> GetTop(int limit = 3)
         {
             throw new NotImplementedException();
         }
@@ -67,8 +60,8 @@ namespace WebCalc.Managers
             var fields = new List<object>()
             {
                 entity.OperationName,
-                entity.Arguments,
-                entity.Result,
+                entity.Arguments, 
+                entity.Result, 
                 entity.ExecutionTime,
                 entity.ExecutionDate.ToString("MM-dd-yyyy HH:mm:ss")
 

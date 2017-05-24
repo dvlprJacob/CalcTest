@@ -12,7 +12,7 @@
     <property name="BirthDate" />
     <property name="Login" />
     <property name="Password" />
-
+    
   </class>
 
 </hibernate-mapping>

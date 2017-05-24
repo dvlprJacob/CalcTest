@@ -1,114 +1,104 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using CalcLibrary;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
-using CalcLibrary;
 
 namespace SuperCalc
 {
     public partial class Form1 : Form
     {
+
         private class OperationBeauty
         {
-            public CalcLibrary.IOperation Operation { get; set; }
-            public string Name { get; set; }
-            public OperationBeauty(CalcLibrary.IOperation operation)
+            public OperationBeauty(IOperation operation)
             {
                 Operation = operation;
+
                 var type = operation.GetType();
+                
                 Name = $"{type.Name}.{operation.Name}";
             }
+
+            public IOperation Operation { get; set; }
+
+            public string Name { get; set; }
         }
-        private CalcLibrary.Calc Calc { get; set; }
+
+        private Calc Calc { get; set; }
+
         public Form1()
         {
             InitializeComponent();
-            Calc = new CalcLibrary.Calc();
+            Calc = new Calc();
 
             cbOper.DataSource = Calc.Operations.Select(o => new OperationBeauty(o)).ToList();
-            cbOper.DisplayMember = "Name";
+            cbOper.DisplayMember = "Name";   
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             lResult.Text = "";
-
-            var operB = cbOper.SelectedItem as OperationBeauty;
-            var oper = operB.Operation is IOperationArgs;
-
+            
             object result = null;
 
-            var moreArgs = cbOper.SelectedItem is CalcLibrary.IOperationArgs;
+            var operB = cbOper.SelectedItem as OperationBeauty;
+
+            var oper = operB.Operation;
+
+            var moreArgs = oper is IOperationArgs;
 
             var args = new List<object>();
 
-            var x = "";
-            var y = "";
-
             if (moreArgs)
             {
-                lInterface.Text = "IOperationArgs";
-                args.AddRange(tbMore.Text.Split(new char[] { ' ' }));
-                try
-                {
-                    result = Calc.Execute(cbOper.SelectedItem as CalcLibrary.IOperationArgs, args.ToArray());
-                }
-                catch (DivideByZeroException ex)
-                {
-                    lResult.Text = $"Error : {ex.Message}";
-                }
-                catch (Exception ex)
-                {
-                    lResult.Text = $"Error : {ex.Message}";
-                }
-                if (result != null)
-                {
-                    if (moreArgs)
-                        lResult.Text = $"{oper}( args ( {tbMore.Text} ) ) = {result}";
-                    else
-                        lResult.Text = $"{x} {oper} {y} = {result}";
-                }
+                // "1 2 3" => new string [] {"1", "2", "3"}
+                args.AddRange(tbMore.Text.Split(' '));
             }
             else
             {
-                lInterface.Text = "IOperation";
-                x = tbX.Text;
-                y = tbY.Text;
+                var x = tbX.Text;
+                var y = tbY.Text;
                 args.Add(x);
                 args.Add(y);
-                try
-                {
-                    result = result = Calc.Execute(cbOper.SelectedItem as CalcLibrary.IOperation, args.ToArray());
-                }
-                catch (DivideByZeroException ex)
-                {
-                    lResult.Text = $"Error : {ex.Message}";
-                }
-                catch (Exception ex)
-                {
-                    lResult.Text = $"Error : {ex.Message}";
-                }
-                if (result != null)
-                {
-                    if (moreArgs)
-                        lResult.Text = $"{oper}( args ( {tbMore.Text} ) ) = {result}";
-                    else
-                        lResult.Text = $"{x} {oper} {y} = {result}";
-                }
+            }
+
+            try
+            {
+                result = Calc.Execute(oper, args.ToArray());
+            }
+            catch (DivideByZeroException ex)
+            {
+                lResult.Text = $"DivideByZero: {ex.Message}";
+            }
+            catch (Exception ex)
+            {
+                lResult.Text = $"Error: {ex.Message}";
+            }
+
+            if (result != null)
+            {
+                lResult.Text = $"{result}";
             }
         }
 
         private void cbOper_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var moreArgs =  cbOper.SelectedItem is CalcLibrary.IOperationArgs;
-            
+            var operB = cbOper.SelectedItem as OperationBeauty;
+            var moreArgs = operB.Operation is IOperationArgs;
+
             panTwoArgs.Visible = !moreArgs;
             panMoreArgs.Visible = moreArgs;
+        }
+
+        private void cbOper_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            var item = (cbOper.Items[e.Index] as OperationBeauty);
+            Brush brush = item.Operation is IOperationArgs ? Brushes.Green : Brushes.Black;
+            e.Graphics.DrawString(item.Name, e.Font, brush, e.Bounds);
+            e.DrawFocusRectangle();
         }
     }
 }

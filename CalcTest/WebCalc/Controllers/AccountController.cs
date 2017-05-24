@@ -31,7 +31,7 @@ namespace WebCalc.Controllers
             UserRepository = new NHUserRepository();
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -43,9 +43,9 @@ namespace WebCalc.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set
-            {
-                _signInManager = value;
+            private set 
+            { 
+                _signInManager = value; 
             }
         }
 
@@ -81,14 +81,14 @@ namespace WebCalc.Controllers
             {
                 return View(model);
             }
-
+            
             if (UserRepository.Validate(model.Email, model.Password))
             {
                 FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
 
                 return RedirectToLocal(returnUrl);
             }
-
+            
             ModelState.AddModelError("", "Неудачная попытка входа.");
             return View(model);
         }
@@ -122,7 +122,7 @@ namespace WebCalc.Controllers
             // Если пользователь введет неправильные коды за указанное время, его учетная запись 
             // будет заблокирована на заданный период. 
             // Параметры блокирования учетных записей можно настроить в IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:

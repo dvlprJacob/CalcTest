@@ -1,12 +1,3 @@
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\CalcTest\bin\Debug\CalcTest.dll
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\CalcTest\bin\Debug\CalcTest.pdb
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\CalcTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\CalcTest\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\CalcTest\obj\Debug\CalcTest.csprojResolveAssemblyReference.cache
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\CalcTest\obj\Debug\CalcTest.dll
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\CalcTest\obj\Debug\CalcTest.pdb
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\CalcTest\bin\Debug\CalcLibrary.dll
-C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\CalcTest\bin\Debug\CalcLibrary.pdb
 C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\bin\Debug\CalcTest.dll
 C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\bin\Debug\CalcTest.pdb
 C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\CalcTest\bin\Debug\CalcLibrary.dll

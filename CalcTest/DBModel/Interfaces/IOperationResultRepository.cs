@@ -5,6 +5,6 @@ namespace WebCalc.Managers
 {
     public interface IOperationResultRepository : IBaseRepository<OperationResult>
     {
-        IDictionary<string,int> GetTop(int limit);
+        IDictionary<string, int> GetTop(int limit = 3);
     }
 }

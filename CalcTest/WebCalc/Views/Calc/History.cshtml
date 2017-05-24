@@ -1,77 +1,77 @@
 ﻿@model IEnumerable<DBModel.Models.OperationResult>
 
-@{
-    ViewBag.Title = "History";
+    @{
+        ViewBag.Title = "History";
 
-    var topOperations = ViewBag.TopOperations as IDictionary<string, int>;
-}
-
-<h2>История операций</h2>
-
-<p>
-    @Html.ActionLink("Вычислить что-то", "Index", null, new { @class = "btn btn-default" })
-
-    @Html.ActionLink("Все операции", "History", null, new { @class = "btn btn-primary" })
-
-    @foreach (var top in topOperations)
-    {
-        @:&nbsp;
-        @Html.ActionLink($"{top.Key} ({top.Value})", "History", new { oper = top.Key }, new { @class = "btn btn-warning" })
-
+        var topOperations = ViewBag.TopOperations as IDictionary<string, int>;
     }
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.OperationName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Arguments)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Result)
-        </th>
-        <th>
-            Инициатор
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExecutionTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExecutionDate)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
+    <h2>История операций</h2>
+
+    <p>
+        @Html.ActionLink("Вычислить что-то", "Index", null, new { @class = "btn btn-default" })
+
+        @Html.ActionLink("Все операции", "History", null, new { @class = "btn btn-primary" })
+
+        @foreach (var top in topOperations)
+        {
+            @:&nbsp;
+            @Html.ActionLink($"{top.Key} ({top.Value})", "History", new { oper = top.Key }, new { @class="btn btn-warning"})
+
+        }
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OperationName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Arguments)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Result)
-            </td>
-            <td>
-                @if (item.Iniciator != null)
-                {
-                    @Html.DisplayFor(modelItem => item.Iniciator.Name)
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExecutionTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExecutionDate)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.OperationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Arguments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Result)
+            </th>
+            <th>
+                Инициатор
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExecutionTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExecutionDate)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OperationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Arguments)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Result)
+                </td>
+                <td>
+                    @if (item.Iniciator != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Iniciator.Name)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExecutionTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExecutionDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>

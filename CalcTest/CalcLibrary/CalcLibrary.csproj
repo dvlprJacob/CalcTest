@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7CD304ED-87B9-4A6E-AD11-558C88D9B85C}</ProjectGuid>
+    <ProjectGuid>{8BB85AB7-D53C-40BE-BE6B-4F4B6B6C7F1F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CalcLibrary</RootNamespace>
@@ -41,12 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calc.cs" />
-    <Compile Include="DefaultOperations\DivideOneOperation.cs" />
     <Compile Include="DefaultOperations\DivideOperation.cs" />
-    <Compile Include="DefaultOperations\MaxOperation.cs" />
-    <Compile Include="DefaultOperations\MultiplyOperation.cs" />
-    <Compile Include="DefaultOperations\PowOperation.cs" />
-    <Compile Include="DefaultOperations\MinOperation.cs" />
+    <Compile Include="DefaultOperations\DivideOneOperation.cs" />
     <Compile Include="DefaultOperations\SumOperation.cs" />
     <Compile Include="IOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

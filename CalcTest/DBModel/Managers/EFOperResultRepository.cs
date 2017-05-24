@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DBModel.Helpers;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DBModel.Helpers;
+using System.Collections.Generic;
 using WebCalc.Managers;
-using System.Data.Entity;
 using DBModel.Models;
+using System.Data.Entity;
 using System.Data.SqlClient;
 
 namespace DBModel.Managers
 {
-    [Obsolete("Ent Frm Отстой",true)]
+    [Obsolete("Отстой", true)]
     public class EFOperResultRepository : BaseRepository<OperationResult>, IOperationResultRepository
     {
         private DbSet<OperationResult> OperationResults { get; set; }
@@ -28,7 +26,7 @@ namespace DBModel.Managers
 
         public override IEnumerable<OperationResult> GetAll(bool flag)
         {
-            return flag ? OperationResults.Include(item => item.Iniciator).ToList() : GetAll();
+            return flag ? OperationResults.Include(item=>item.Iniciator).ToList() : GetAll();
         }
 
         public override void Save(OperationResult entity)
@@ -40,21 +38,25 @@ namespace DBModel.Managers
         public IDictionary<string, int> GetTop(int limit = 3)
         {
             var result = new Dictionary<string, int>();
-            var limitParam = new SqlParameter("@limit", limit);
-            var data = _db.Database.SqlQuery<TopOP>(
-                $"select top {limit} OperationName,Count(*) as [Count] from OperationResult group by [OperationName] order by [Count] desc",
-                limitParam);
 
-            foreach(var item in data)
+            var limitParam = new SqlParameter("@limit", limit);
+
+            var data = _db.Database.SqlQuery<TopOp>(
+                $"select top {limit} OperationName, Count(*) as [Count] from OperationResult group by [OperationName] order by [Count] desc"
+            );
+
+            foreach (var item in data)
             {
                 result.Add(item.OperationName, item.Count);
             }
-            return result;
 
+            return result;
         }
-        private class TopOP
+
+        private class TopOp
         {
             public string OperationName { get; set; }
+
             public int Count { get; set; }
         }
     }

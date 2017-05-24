@@ -13,9 +13,9 @@
     <property name="NeedUpdate" />
     <property name="ExecutionTime" />
     <property name="ExecutionDate" />
-
+    
     <many-to-one name="Iniciator" class="User" column="Iniciator_id" lazy="false"/>
-
+    
   </class>
 
 </hibernate-mapping>

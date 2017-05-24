@@ -32,9 +32,9 @@ namespace WebCalc.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set
-            {
-                _signInManager = value;
+            private set 
+            { 
+                _signInManager = value; 
             }
         }
 
@@ -333,7 +333,7 @@ namespace WebCalc.Controllers
             base.Dispose(disposing);
         }
 
-        #region Вспомогательные приложения
+#region Вспомогательные приложения
         // Используется для защиты от XSRF-атак при добавлении внешних имен входа
         private const string XsrfKey = "XsrfId";
 
@@ -384,6 +384,6 @@ namespace WebCalc.Controllers
             Error
         }
 
-        #endregion
+#endregion
     }
 }

@@ -31,15 +31,13 @@ namespace WebCalc.Controllers
 
         public CalcController()
         {
-            Calc = new Calc(@"C:\Users\Jacob\Desktop\Elma\Tasks\CalcTest\WebCalc\bin\");
+            Calc = new Calc(@"g:\work\CalcTest\CalcTest\WebCalc\bin\");
             OperationList = Calc.Operations.Select(o => new SelectListItem() { Text = $"{o.GetType().Name}.{o.Name}", Value = $"{o.GetType().Name}.{o.Name}" });
 
-            //entity frmwrk
             //var calcContext = new CalcContext();
             //OperationResultRepository = new EFOperResultRepository(calcContext);
             //UserRepository = new UserRepository(calcContext);
 
-            //NHibernate
             OperationResultRepository = new NHOperResultRepository();
             UserRepository = new NHUserRepository();
 
@@ -108,7 +106,7 @@ namespace WebCalc.Controllers
         {
             ViewBag.TopOperations = OperationResultRepository.GetTop(2);
             var operations = !string.IsNullOrWhiteSpace(oper)
-               ? OperationResultRepository.GetAll(true).Where(o => o.OperationName == oper)
+                ? OperationResultRepository.GetAll(true).Where(o => o.OperationName == oper)
                 : OperationResultRepository.GetAll(true);
 
             return View(operations);

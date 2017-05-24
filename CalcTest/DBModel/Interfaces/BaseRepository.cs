@@ -7,7 +7,7 @@ namespace WebCalc.Managers
     /// <summary>
     /// Базовый интерфейс хранилища данных
     /// </summary>
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class 
     {
         protected DbContext _db { get; set; }
 

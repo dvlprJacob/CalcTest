@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DBModel.Models;
 using WebCalc.Managers;
-using DBModel.Helpers;
-
 using System.Data.Entity;
+using System;
 
 namespace DBModel.Managers
 {
+    [Obsolete("Отстой", true)]
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
         private DbSet<User> Users { get; set; }
